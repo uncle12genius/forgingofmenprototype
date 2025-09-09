@@ -1,20 +1,41 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Home, AlertCircle } from "lucide-react";
 
 const ErrorPage = () => {
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-gray-100 text-gray-800">
-      <h1 className="text-9xl font-extrabold text-blue-600 mb-4">404</h1>
-      <h2 className="text-3xl font-bold mb-2">Page Not Found</h2>
-      <p className="text-gray-600 mb-6">
-        Oops! The page you are looking for does not exist.
-      </p>
-      <Link
-        to="/"
-        className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
-      >
-        Go Back Home
-      </Link>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-50 to-white px-4 py-8">
+      <div className="max-w-sm w-full text-center">
+        {/* Icon */}
+        <div className="mb-4 flex justify-center">
+          <div className="bg-gradient-to-r from-green-600 to-teal-500 p-3 rounded-full">
+            <AlertCircle className="w-12 h-12 text-white" />
+          </div>
+        </div>
+        
+        {/* Error Code */}
+        <h1 className="text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-500 mb-3">
+          404
+        </h1>
+        
+        {/* Message */}
+        <h2 className="text-xl font-bold text-green-800 mb-2">
+          Page Not Found
+        </h2>
+        
+        <p className="text-gray-600 mb-6 text-base">
+          The page you're looking for doesn't exist.
+        </p>
+        
+        {/* Home Button */}
+        <Link
+          to="/"
+          className="inline-flex items-center justify-center px-5 py-2.5 bg-gradient-to-r from-green-600 to-teal-500 text-white font-medium rounded-lg shadow-sm hover:from-green-700 hover:to-teal-600 transition-all"
+        >
+          <Home className="w-4 h-4 mr-1.5" />
+          Go Home
+        </Link>
+      </div>
     </div>
   );
 };

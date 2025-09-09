@@ -1,9 +1,38 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Calendar, Clock, MapPin, ArrowLeft, MessageCircle, Send } from "lucide-react";
 
-function EventDetails2({ event, onBack }) {
+// Sample events data (you can move this to a separate file)
+const events = [
+  {
+    id: 1,
+    title: "Mindfulness Meditation Workshop",
+    date: "2023-11-15",
+    time: "6:00 PM - 7:30 PM",
+    location: "Community Wellness Center",
+    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80",
+    fullDescription: "Join us for a guided meditation session to reduce stress and improve focus..."
+  },
+  {
+    id: 2,
+    title: "Coping with Anxiety Seminar",
+    date: "2023-11-20",
+    time: "5:30 PM - 7:00 PM",
+    location: "Online Event",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80",
+    fullDescription: "Learn practical strategies to manage anxiety in daily life from our licensed therapists..."
+  }
+];
+
+function EventDetails2() {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [comment, setComment] = useState("");
   const [showToast, setShowToast] = useState(false);
+
+  // Find event by ID
+  const event = events.find((e) => e.id === parseInt(id));
+  if (!event) return <div className="text-center py-20 text-red-500">Event not found.</div>;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +48,7 @@ function EventDetails2({ event, onBack }) {
       <div className="max-w-3xl mx-auto">
         {/* Back Button */}
         <button
-          onClick={onBack}
+          onClick={() => navigate(-1)}
           className="flex items-center text-green-700 mb-6 hover:text-green-800 transition-colors"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
@@ -44,34 +73,25 @@ function EventDetails2({ event, onBack }) {
         {/* Event Details */}
         <div className="bg-white rounded-2xl shadow-md p-6 mb-8">
           <h2 className="text-2xl font-bold text-green-900 mb-4">{event.title}</h2>
-          <p className="text-gray-700 mb-6">
-            {event.fullDescription}
-          </p>
+          <p className="text-gray-700 mb-6">{event.fullDescription}</p>
           
           <div className="space-y-4">
             <div className="flex items-center text-gray-700">
               <Calendar className="w-5 h-5 text-green-600 mr-3" />
               <span className="font-medium">
-                {new Date(event.date).toLocaleDateString('en-US', { 
-                  weekday: 'long', 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
-                })}
+                {new Date(event.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
               </span>
             </div>
-            
             <div className="flex items-center text-gray-700">
               <Clock className="w-5 h-5 text-green-600 mr-3" />
               <span className="font-medium">{event.time}</span>
             </div>
-            
             <div className="flex items-center text-gray-700">
               <MapPin className="w-5 h-5 text-green-600 mr-3" />
               <span className="font-medium">{event.location}</span>
             </div>
           </div>
-          
+
           <a
             href="https://example.com/event"
             target="_blank"

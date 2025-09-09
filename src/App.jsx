@@ -1,30 +1,48 @@
-import React, { useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import Home from "./pages/viewers/Home";
 import AboutUs from "./pages/viewers/AboutUs";
 import EventDetails from "./pages/viewers/EventsPage/EventDetails";
+import EventDetails2 from "./pages/viewers/EventsPage/EventDetails2";
+import ErrorPage from "./pages/viewers/ErrorPage";
 import Footer from "./components/Footer";
 
 const App = () => {
-  const [viewingEventDetails, setViewingEventDetails] = useState(false);
-
   return (
-    <div className="App">
-      <Navbar />
+    <Router>
+      <div className="App">
+        <Navbar />
 
-      {!viewingEventDetails ? (
-        <>
-          <div id="home"><Home /></div>
-          <div id="about"><AboutUs /></div>
-          <div id="events"><EventDetails /></div>
-          
-        </>
-      ) : (
-        <EventDetails />
-      )}
+        <Routes>
+          {/* Main landing page */}
+          <Route
+            path="/"
+            element={
+              <>
+                <section id="home">
+                  <Home />
+                </section>
+                <section id="about">
+                  <AboutUs />
+                </section>
+                <section id="events">
+                  <EventDetails />
+                </section>
+              </>
+            }
+          />
 
-      <Footer />
-    </div>
+          {/* Event details page */}
+          <Route path="/event/:id" element={<EventDetails2 />} />
+
+          {/* Catch-all route */}
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+
+        <Footer />
+      </div>
+    </Router>
   );
 };
 
