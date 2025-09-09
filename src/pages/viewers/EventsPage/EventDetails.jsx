@@ -55,8 +55,9 @@ function EventDetails({ onViewEventDetails }) {
 
   
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white py-8 px-4 sm:px-6 lg:px-8" id= "Events">
-      <div className="max-w-6xl mx-auto">
+    <div className="bg-gradient-to-b from-green-50 to-white py-8 px-4 sm:px-6 lg:px-7" id="Events">
+
+      <div className="max-w-4x mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold text-green-800 mb-2">Upcoming Events</h1>

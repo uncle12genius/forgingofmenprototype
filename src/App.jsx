@@ -1,37 +1,31 @@
-import React, { useState } from 'react'
-import Navbar from './components/NavBar'
-import Home from './pages/viewers/Home'
-import AboutUs from './pages/viewers/AboutUs'
-import EventDetails from './pages/viewers/EventsPage/EventDetails'
-import Footer from './components/Footer'
+import React, { useState } from "react";
+import Navbar from "./components/NavBar";
+import Home from "./pages/viewers/Home";
+import AboutUs from "./pages/viewers/AboutUs";
+import EventDetails from "./pages/viewers/EventsPage/EventDetails";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [viewingEventDetails, setViewingEventDetails] = useState(false);
 
-  const handleViewEventDetails = (isViewing) => {
-    setViewingEventDetails(isViewing);
-  };
-
   return (
-    <div className='App'>
-      {/* Navigation Bar - Always visible */}
-      <Navbar/>
-      
-      {/* Main Content - Conditionally render based on viewing state */}
+    <div className="App">
+      <Navbar />
+
       {!viewingEventDetails ? (
         <>
-          <Home/>
-          <AboutUs/>
-          <EventDetails onViewEventDetails={handleViewEventDetails}/>
+          <div id="home"><Home /></div>
+          <div id="about"><AboutUs /></div>
+          <div id="events"><EventDetails /></div>
+          
         </>
       ) : (
-        <EventDetails onViewEventDetails={handleViewEventDetails}/>
+        <EventDetails />
       )}
-      
-      {/* Footer - Always visible */}
-      <Footer/>
-    </div>
-  )
-}
 
-export default App
+      <Footer />
+    </div>
+  );
+};
+
+export default App;
