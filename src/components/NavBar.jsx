@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, Calendar, Home, Users, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
 import Men from "../assets/Men.jpeg";
 
 const Navbar = () => {
@@ -21,10 +22,10 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { name: "Home", id: "home", scroll: true, icon: <Home size={18} /> },
+    { name: "Home", id: "home", scroll: true, icon: <Home size={18} />  },
     { name: "About Us", id: "about", scroll: true, icon: <Users size={18} /> },
-    { name: "Events", id: "events", scroll: true, icon: <Calendar size={18} /> },
-    { name: "Resources", href: "/resources", scroll: false, icon: <BookOpen size={18} /> },
+    { name: "Events", id: "events", scroll: true, icon: <Calendar size={18} />  },
+    { name: "Resources", scroll: false, icon: <BookOpen size={18} />, link: "/resources" },
   ];
 
   return (
@@ -73,8 +74,8 @@ const Navbar = () => {
                   {item.name}
                 </button>
               ) : (
-                <a
-                  href={item.href}
+                <Link
+                  to={item.link}
                   className={`flex items-center px-4 py-2 rounded-lg transition-all ${
                     scrolled
                       ? "text-gray-700 hover:bg-green-50 hover:text-green-700"
@@ -83,7 +84,7 @@ const Navbar = () => {
                 >
                   <span className="mr-1">{item.icon}</span>
                   {item.name}
-                </a>
+                </Link>
               )}
               <span
                 className={`absolute left-4 -bottom-1 w-0 h-0.5 transition-all group-hover:w-8 ${
@@ -96,8 +97,8 @@ const Navbar = () => {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <a
-            href="/book"
+          <Link
+            to="/book"
             className={`px-5 py-2.5 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg ${
               scrolled
                 ? "bg-gradient-to-r from-green-600 to-teal-500 text-white hover:from-green-700 hover:to-teal-600"
@@ -105,7 +106,7 @@ const Navbar = () => {
             }`}
           >
             Book Session
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Hamburger */}
@@ -134,23 +135,23 @@ const Navbar = () => {
                     {item.name}
                   </button>
                 ) : (
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.link}
                     className="flex items-center px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors"
                   >
                     <span className="mr-3">{item.icon}</span>
                     {item.name}
-                  </a>
+                  </Link>
                 )}
               </li>
             ))}
             <li className="mt-2 border-t border-gray-100 pt-2">
-              <a
-                href="/book"
+              <Link
+                to="/book"
                 className="flex items-center justify-center px-4 py-3 bg-gradient-to-r from-green-600 to-teal-500 text-white rounded-lg font-semibold hover:from-green-700 hover:to-teal-600 transition-all"
               >
                 Book Session
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

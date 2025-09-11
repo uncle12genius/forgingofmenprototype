@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Calendar, Clock, MapPin, ArrowRight } from "lucide-react";
 
@@ -32,7 +31,7 @@ function EventDetails() {
   };
 
   return (
-    <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto" id="events">
+    <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <h1 className="text-3xl font-bold text-green-800 mb-8 text-center">Upcoming Events</h1>
 
       <div className="flex flex-col md:flex-row gap-6 justify-center">

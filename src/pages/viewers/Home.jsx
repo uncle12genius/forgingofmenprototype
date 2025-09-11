@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import  { useState, useEffect, useRef } from "react";
 import { 
   Play, 
   Pause, 
@@ -47,7 +47,7 @@ const Home = () => {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden flex items-center justify-center" id="Home">
+    <div className="relative w-full h-screen overflow-hidden flex items-center justify-center">
       {/* Slide container */}
       <div
         ref={slideRef}

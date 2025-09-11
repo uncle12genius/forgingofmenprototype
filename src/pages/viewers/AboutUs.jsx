@@ -1,4 +1,3 @@
-import React from "react";
 import { 
   Users, 
   Calendar, 
@@ -10,7 +9,7 @@ import {
 
 const AboutUs = () => {
   return (
-    <section className="bg-white text-gray-800 px-4 md:px-12 lg:px-20 py-12 md:py-16 min-h-screen" id="AboutUs">
+    <section className="bg-white text-gray-800 px-4 md:px-12 lg:px-20 py-12 md:py-16 min-h-screen">
       {/* Header Section */}
       <div className="text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text text-transparent">

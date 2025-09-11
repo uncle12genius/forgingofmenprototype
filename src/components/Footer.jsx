@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ChevronUp, Instagram, Facebook } from "lucide-react";
 import { SiTiktok } from "react-icons/si";
 import Men from "../assets/Men.jpeg";
