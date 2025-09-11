@@ -27,6 +27,27 @@ const Resources = () => {
       price: "Kes 18",
       image: "https://via.placeholder.com/150",
     },
+    {
+      id: 4,
+      title: "Python Fundamentals",
+      description: "Learn Python programming from scratch.",
+      price: "Kes 20",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      id: 5,
+      title: "CSS Mastery",
+      description: "Advanced CSS techniques and best practices.",
+      price: "Kes 16",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      id: 6,
+      title: "Node.js Development",
+      description: "Build server-side applications with Node.js.",
+      price: "Kes 22",
+      image: "https://via.placeholder.com/150",
+    },
   ];
 
   const handleBuy = (book) => {
@@ -35,9 +56,9 @@ const Resources = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-24 pb-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
+        {/* Header - Added margin top to ensure visibility below navbar */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-600 to-teal-500 rounded-full mb-4">
             <Book className="w-8 h-8 text-white" />
@@ -62,8 +83,8 @@ const Resources = () => {
               />
               
               <div className="p-5 flex flex-col flex-grow">
-                <h2 className="text-lg font-semibold text-green-900 mb-2">{book.title}</h2>
-                <p className="text-gray-600 text-sm mb-4 flex-grow">
+                <h2 className="text-lg font-semibold text-green-900 mb-2 line-clamp-1">{book.title}</h2>
+                <p className="text-gray-600 text-sm mb-4 flex-grow line-clamp-2">
                   {book.description}
                 </p>
                 
@@ -84,7 +105,7 @@ const Resources = () => {
 
         {/* Modal */}
         {showModal && selectedBook && (
-          <div className="fixed inset-0 flex items-center justify-center p-4 bg- bg-opacity-60 backdrop-blur-sm z-50">
+          <div className="fixed inset-0 flex items-center justify-center p-4 bg-bg-opacity-60 backdrop-blur-sm z-50">
             <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden">
               {/* Modal Header */}
               <div className="bg-gradient-to-r from-green-600 to-teal-500 p-5 text-white">

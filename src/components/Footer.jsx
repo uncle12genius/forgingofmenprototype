@@ -35,84 +35,72 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-r from-green-700 to-teal-600 text-white py-8 px-4 md:px-8 relative">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          {/* Logo and Social Media */}
-          <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-8">
-            {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <div
-                className={`p-2 rounded-lg ${
-                  scrolled
-                    ? "bg-gradient-to-r from-green-600 to-teal-500"
-                    : "bg-white"
-                }`}
-              >
-                <img src={Men} alt="Forging of men" className="h-10 w-auto" />
+    <footer className="bg-gradient-to-r from-green-700 to-teal-600 text-white py-6 px-4 md:px-6 relative">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          {/* Logo and Organization Info */}
+          <div className="flex items-center">
+            <div className="bg-white p-1.5 rounded-lg mr-3">
+              <img src={Men} alt="Forging of men" className="h-8 w-auto" />
+            </div>
+            <div className="text-center md:text-left">
+              <h3 className="font-bold text-lg">Forging Of Men</h3>
+              <div className="flex items-center justify-center md:justify-start mt-1 text-green-100 text-sm">
+                <a href="mailto:info@forgingofmen.org" className="hover:text-white transition-colors">
+                  info@forgingofmen.org
+                </a>
               </div>
-              <span className="text-xl font-bold text-white">
-                Forging Of Men
-              </span>
             </div>
+          </div>
 
-            {/* Social Media Icons */}
-            <div className="flex items-center space-x-4">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors"
-                aria-label="Visit our Instagram"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="https://tiktok.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors"
-                aria-label="Visit our TikTok"
-              >
-                <SiTiktok className="w-5 h-5" />
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors"
-                aria-label="Visit our Facebook"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-            </div>
+          {/* Social Media Icons */}
+          <div className="flex items-center space-x-3">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/10 p-1.5 rounded-full hover:bg-white/20 transition-colors"
+              aria-label="Visit our Instagram"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+            <a
+              href="https://tiktok.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/10 p-1.5 rounded-full hover:bg-white/20 transition-colors"
+              aria-label="Visit our TikTok"
+            >
+              <SiTiktok className="w-4 h-4" />
+            </a>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/10 p-1.5 rounded-full hover:bg-white/20 transition-colors"
+              aria-label="Visit our Facebook"
+            >
+              <Facebook className="w-4 h-4" />
+            </a>
           </div>
 
           {/* Back to Top Button */}
           {showBackToTop && isVisible && (
             <button
               onClick={scrollToTop}
-              className="bg-white text-green-700 hover:bg-green-50 transition-all duration-300 p-3 rounded-full shadow-lg flex items-center justify-center animate-fade-in"
+              className="bg-white text-green-700 hover:bg-green-50 transition-all duration-300 p-2 rounded-full shadow-lg flex items-center justify-center animate-fade-in"
               aria-label="Back to top"
             >
-              <ChevronUp className="w-5 h-5" />
+              <ChevronUp className="w-4 h-4" />
             </button>
           )}
         </div>
 
-        {/* Copyright and Contact */}
-        <div className="mt-8 pt-6 border-t border-green-500/30">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-green-100">
-              © {new Date().getFullYear()} Forging of Men. All rights reserved.
-            </p>
-            <a
-              href="mailto:info@forgingofmen.org"
-              className="text-green-100 hover:text-white transition-colors text-sm"
-            >
-              info@forgingofmen.org
-            </a>
-          </div>
+        {/* Copyright */}
+        <div className="mt-6 pt-4 border-t border-green-500/30 text-center">
+          <p className="text-xs text-green-100">
+            © {new Date().getFullYear()} Forging of Men. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

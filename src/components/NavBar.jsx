@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Calendar, Home, Users, BookOpen } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Men from "../assets/Men.jpeg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -14,17 +16,22 @@ const Navbar = () => {
   }, []);
 
   const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
+    if (location.pathname !== "/") {
+      // Navigate to home, then scroll
+      navigate("/", { state: { scrollTo: id } });
+    } else {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+        setIsOpen(false);
+      }
     }
   };
 
   const navItems = [
-    { name: "Home", id: "home", scroll: true, icon: <Home size={18} />  },
+    { name: "Home", id: "home", scroll: true, icon: <Home size={18} /> },
     { name: "About Us", id: "about", scroll: true, icon: <Users size={18} /> },
-    { name: "Events", id: "events", scroll: true, icon: <Calendar size={18} />  },
+    { name: "Events", id: "events", scroll: true, icon: <Calendar size={18} /> },
     { name: "Resources", scroll: false, icon: <BookOpen size={18} />, link: "/resources" },
   ];
 
