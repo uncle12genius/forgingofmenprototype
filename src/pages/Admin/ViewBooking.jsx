@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import useBookings from '../../hooks/useBookings';
 
 export default function ViewBookings() {
   const { fetchBookings, updateBookingStatus } = useBookings();

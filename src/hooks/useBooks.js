@@ -7,14 +7,17 @@ export default function useBooks() {
   const [error, setError] = useState(null);
 
   const createBook = async (payload) => {
-    setLoading(true); setError(null);
+    setLoading(true);
+    setError(null);
     try {
       const res = await booksApi.addBook(payload);
       return res.data;
     } catch (err) {
       setError(err);
       throw err;
-    } finally { setLoading(false); }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const listBooks = async (params) => {

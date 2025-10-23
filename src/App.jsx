@@ -9,11 +9,11 @@ import Resources from "./pages/viewers/E-Resources/Resources";
 import ErrorPage from "./pages/viewers/ErrorPage";
 import Footer from "./components/Footer";
 
-import AdminLogin from "./pages/Admin/AdminLogin";       // <-- exact filename/casing
+import AdminLogin from "./pages/Admin/AdminLogin";   
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AddBook from "./pages/Admin/AddBook";
 import PostEvent from "./pages/Admin/PostEvent";
-import ViewBooking from "./pages/Admin/ViewBooking";   // <-- exact filename/casing
+import ViewBooking from "./pages/Admin/ViewBooking";  
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import ErrorBoundary from "./components/ErrorBoundary";

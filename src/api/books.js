@@ -1,4 +1,4 @@
-// src/api/books.js
+
 import apiClient from './index';
 
 export const fetchBooks = (params) => apiClient.get('/books', { params });
