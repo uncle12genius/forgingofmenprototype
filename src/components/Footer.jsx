@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { ChevronUp, Instagram, Facebook } from "lucide-react";
 import { SiTiktok } from "react-icons/si";
 import Men from "../assets/Men.jpeg";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [scrolled, setScrolled] = useState(false);
 
-  // Track scroll for "scrolled" state + back-to-top
+  
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.scrollY > 300) {
@@ -41,9 +42,12 @@ const Footer = () => {
           {/* Logo and Organization Info */}
           <div className="flex items-center">
             <div className="bg-white p-1.5 rounded-lg mr-3">
+              <Link to = "/admin/login">
               <img src={Men} alt="Forging of men" className="h-8 w-auto" />
+              </Link>
             </div>
             <div className="text-center md:text-left">
+              
               <h3 className="font-bold text-lg">Forging Of Men</h3>
               <div className="flex items-center justify-center md:justify-start mt-1 text-green-100 text-sm">
                 <a href="mailto:info@forgingofmen.org" className="hover:text-white transition-colors">
@@ -82,6 +86,7 @@ const Footer = () => {
             >
               <Facebook className="w-4 h-4" />
             </a>
+            
           </div>
 
           {/* Back to Top Button */}
