@@ -9,7 +9,7 @@ import Resources from "./pages/viewers/E-Resources/Resources";
 import ErrorPage from "./pages/viewers/ErrorPage";
 import Footer from "./components/Footer";
 
-import AdminLogin from "./pages/Admin/AdminLogin";   
+import AdminLogin from "./pages/Admin/Adminlogin";   
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AddBook from "./pages/Admin/AddBook";
 import PostEvent from "./pages/Admin/PostEvent";
