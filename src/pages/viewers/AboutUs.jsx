@@ -47,7 +47,7 @@ const AboutUs = () => {
             <img
               src="/images/mrceo.jpg"
               alt="Dr. Amelia Hayes"
-              className="w-65 h-64 md:w-80 md:h-90 object-cover rounded-2xl shadow-lg border-4 border-white"
+              className="w-65 h-70 md:w-80 md:h-90 object-cover rounded-2xl shadow-lg border-4 border-white"
             />
             <div className="absolute -bottom-4 -right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-md">
               <p className="font-semibold">Founder & CEO</p>
