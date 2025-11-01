@@ -50,8 +50,8 @@ const Footer = () => {
               
               <h3 className="font-bold text-lg">Forging Of Men</h3>
               <div className="flex items-center justify-center md:justify-start mt-1 text-green-100 text-sm">
-                <a href="mailto:info@forgingofmen.org" className="hover:text-white transition-colors">
-                  info@forgingofmen.org
+                <a href="forgingofmen1@gmail.com " className="hover:text-white transition-colors">
+                  forgingofmen1@gmail.com 
                 </a>
               </div>
             </div>
@@ -60,7 +60,7 @@ const Footer = () => {
           {/* Social Media Icons */}
           <div className="flex items-center space-x-3">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/forgingofmen1/"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/10 p-1.5 rounded-full hover:bg-white/20 transition-colors"
@@ -69,7 +69,7 @@ const Footer = () => {
               <Instagram className="w-4 h-4" />
             </a>
             <a
-              href="https://tiktok.com"
+              href=" https://www.tiktok.com/@forgingofmen1"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/10 p-1.5 rounded-full hover:bg-white/20 transition-colors"
@@ -78,7 +78,7 @@ const Footer = () => {
               <SiTiktok className="w-4 h-4" />
             </a>
             <a
-              href="https://facebook.com"
+              href="https://web.facebook.com/profile.php?id=61579262143747"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/10 p-1.5 rounded-full hover:bg-white/20 transition-colors"
