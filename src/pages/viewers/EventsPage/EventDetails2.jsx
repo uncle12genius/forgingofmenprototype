@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Calendar, Clock, MapPin, ArrowLeft, MessageCircle, Send } from "lucide-react";
 
-// Sample events data (you can move this to a separate file)
+
 const events = [
   {
     id: 1,

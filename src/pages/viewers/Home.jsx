@@ -1,4 +1,5 @@
-import  { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { 
   Play, 
   Pause, 
@@ -20,6 +21,7 @@ const Home = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const slideRef = useRef(null);
+  const navigate = useNavigate(); // Hook for navigation
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -30,6 +32,16 @@ const Home = () => {
 
     return () => clearInterval(interval);
   }, [isPlaying]);
+
+  // Function to handle booking session
+  const handleBookSession = () => {
+    navigate('/book-session'); // Redirect to booking page
+  };
+
+  // Function to handle explore resources
+  const handleExploreResources = () => {
+    navigate('/resources'); // Redirect to resources page
+  };
 
   // Function to jump to previous slide
   const goPrev = () => {
@@ -78,11 +90,17 @@ const Home = () => {
           Explore insightful events and access educational resources to enhance your well-being
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-          <button className="bg-gradient-to-r from-green-600 to-teal-500 text-white px-5 py-2.5 rounded-lg font-semibold hover:from-green-700 hover:to-teal-600 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+          <button 
+            onClick={handleBookSession}
+            className="bg-gradient-to-r from-green-600 to-teal-500 text-white px-5 py-2.5 rounded-lg font-semibold hover:from-green-700 hover:to-teal-600 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+          >
             <Calendar size={18} />
             Book a Session
           </button>
-          <button className="bg-white text-green-700 px-5 py-2.5 rounded-lg font-semibold hover:bg-green-50 transition-all shadow-md hover:shadow-lg border border-green-100 flex items-center justify-center gap-2">
+          <button 
+            onClick={handleExploreResources}
+            className="bg-white text-green-700 px-5 py-2.5 rounded-lg font-semibold hover:bg-green-50 transition-all shadow-md hover:shadow-lg border border-green-100 flex items-center justify-center gap-2"
+          >
             <BookOpen size={18} />
             Explore Resources
           </button>
