@@ -46,8 +46,8 @@ const Approach = () => {
         {/* Header */}
         <div className="text-center mb-20">
           
-          <h1 className="text-4xl md:text-5xl font-light text-slate-800 mb-6 tracking-tight">
-            THE FOUR PILLARS
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text text-transparent">
+            THE  APPROACH
           </h1>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto font-light">
             Foundational relationships that define a man's journey

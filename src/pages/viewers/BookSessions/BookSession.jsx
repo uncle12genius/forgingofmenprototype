@@ -282,7 +282,7 @@ const BookSession = () => {
         }
         
         .animate-scaleIn {
-          animation: scaleIn 0.3s ease-out;
+          animation: scaleIn 0.10s ease-out;
         }
         
         .wiggle-out {
