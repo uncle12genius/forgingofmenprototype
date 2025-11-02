@@ -105,7 +105,7 @@ const Navbar = () => {
         {/* Desktop CTA */}
         <div className="hidden md:block">
           <Link
-            to="/book"
+            to="/book-Session"
             className={`px-5 py-2.5 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg ${
               scrolled
                 ? "bg-gradient-to-r from-green-600 to-teal-500 text-white hover:from-green-700 hover:to-teal-600"
