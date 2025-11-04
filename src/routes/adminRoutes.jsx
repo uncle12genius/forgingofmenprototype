@@ -1,9 +1,8 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import AdminDashboard from '../pages/Admin/AdminDashboard';
+import AdminDashboard from '../pages/Admin/AdminDashboard'; // Back to original
 import AddBook from '../pages/Admin/AddBook';
 import PostEvent from '../pages/Admin/PostEvent';
-import ViewBooking from '../pages/Admin/ViewBooking';
+import ViewBooking from '../pages/Admin/ViewBooking'; // Back to original
 
 const AdminRoutes = () => {
   return (

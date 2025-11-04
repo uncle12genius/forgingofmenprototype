@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function AdminLogin() {
   const navigate = useNavigate();
 
-  const ADMIN_EMAIL = "admin@forge.org";
+  const ADMIN_EMAIL = "omondievan461@gmail.com";
   const ADMIN_PASSWORD = "Forge@123";
 
   const [email, setEmail] = useState("");
