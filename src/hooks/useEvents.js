@@ -1,21 +1,23 @@
+import { useState } from 'react';
 
-import { useState, useEffect } from "react";
+export default function useEvents() {
+  const [loading, setLoading] = useState(false);
 
-export function useEvents() {
-  const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setEvents([
-        { id: 1, name: "Event Alpha" },
-        { id: 2, name: "Event Beta" },
-      ]);
+  const createEvent = async (eventData) => {
+    setLoading(true);
+    try {
+      // Mock API call - replace with actual implementation
+      console.log("Creating event:", eventData);
+      return { success: true };
+    } catch (error) {
+      throw new Error("Failed to create event");
+    } finally {
       setLoading(false);
-    }, 300);
+    }
+  };
 
-    return () => clearTimeout(timer);
-  }, []);
-
-  return { events, loading, setEvents };
+  return {
+    createEvent,
+    loading
+  };
 }

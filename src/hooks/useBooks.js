@@ -1,34 +1,40 @@
-
 import { useState } from 'react';
-import * as booksApi from '../api/books';
 
 export default function useBooks() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  const createBook = async (payload) => {
+  const listBooks = async () => {
     setLoading(true);
-    setError(null);
     try {
-      const res = await booksApi.addBook(payload);
-      return res.data;
-    } catch (err) {
-      setError(err);
-      throw err;
+      // Mock data - replace with actual API call
+      return [
+        { id: 1, title: "Book 1", author: "Author 1" },
+        { id: 2, title: "Book 2", author: "Author 2" }
+      ];
+    } catch (error) {
+      console.error("Error fetching books:", error);
+      return [];
     } finally {
       setLoading(false);
     }
   };
 
-  const listBooks = async (params) => {
+  const createBook = async (bookData) => {
+    setLoading(true);
     try {
-      const res = await booksApi.fetchBooks(params);
-      return res.data;
-    } catch (err) {
-      setError(err);
-      throw err;
+      // Mock API call - replace with actual implementation
+      console.log("Creating book:", bookData);
+      return { success: true };
+    } catch (error) {
+      throw new Error("Failed to create book");
+    } finally {
+      setLoading(false);
     }
   };
 
-  return { createBook, listBooks, loading, error };
+  return {
+    listBooks,
+    createBook,
+    loading
+  };
 }
