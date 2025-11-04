@@ -35,12 +35,12 @@ const Home = () => {
 
   // Function to handle booking session
   const handleBookSession = () => {
-    navigate('/book-session'); // Redirect to booking page
+    navigate('/coming-soon'); // Redirect to booking page
   };
 
   // Function to handle explore resources
   const handleExploreResources = () => {
-    navigate('/resources'); // Redirect to resources page
+    navigate('/coming-soon'); // Redirect to resources page
   };
 
   // Function to jump to previous slide

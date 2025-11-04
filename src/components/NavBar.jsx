@@ -32,7 +32,7 @@ const Navbar = () => {
     { name: "Home", id: "home", scroll: true, icon: <Home size={18} /> },
     { name: "About Us", id: "about", scroll: true, icon: <Users size={18} /> },
     { name: "Events", id: "events", scroll: true, icon: <Calendar size={18} /> },
-    { name: "Resources", scroll: false, icon: <BookOpen size={18} />, link: "/resources" },
+    { name: "Resources", scroll: false, icon: <BookOpen size={18} />, link: "/coming-soon" },
   ];
 
   return (
@@ -105,7 +105,7 @@ const Navbar = () => {
         {/* Desktop CTA */}
         <div className="hidden md:block">
           <Link
-            to="/book-Session"
+            to="/coming-soon"
             className={`px-5 py-2.5 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg ${
               scrolled
                 ? "bg-gradient-to-r from-green-600 to-teal-500 text-white hover:from-green-700 hover:to-teal-600"

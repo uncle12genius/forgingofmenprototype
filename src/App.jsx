@@ -9,6 +9,7 @@ import Approach from "./pages/viewers/Approach";
 import Resources from "./pages/viewers/E-Resources/Resources";
 import BookSession from "./pages/viewers/BookSessions/BookSession";
 import ErrorPage from "./pages/viewers/ErrorPage";
+import ComingSoon from "./pages/ComingSoon"
 import Footer from "./components/Footer";
 
 import AdminLogin from "./pages/Admin/Adminlogin";   
@@ -50,6 +51,7 @@ const App = () => {
           <Route path="/event/:id" element={<EventDetails2 />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/book-Session" element={<BookSession />} />
+          <Route path ="/coming-soon" element={<ComingSoon/>}/>
 
           {/* Admin routes */}
           <Route path="/admin/login" element={<AdminLogin />} />
