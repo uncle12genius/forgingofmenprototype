@@ -4,43 +4,52 @@ import { Calendar, Clock, MapPin, ArrowRight } from "lucide-react";
 
 const upcomingEvents = [
   {
-    id: 1,
-    title: "Mindfulness Meditation Workshop",
-    date: "2024-12-15",
-    time: "6:00 PM - 7:30 PM",
-    location: "Community Wellness Center",
-    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80",
-    description: "Join us for a guided meditation session to reduce stress and improve focus."
+   id: 1,
+    title: "The Matter Masculinity",
+    date: "2025-11-8",
+    time: "7:45 PM - 9:00 PM",
+    location: "Google Meet ",
+    image: "/images/Event.jpg",
+    description: "How men navigate identity changes and challenges in today’s feminine-leaning social structure."
   },
-  {
-    id: 2,
-    title: "Coping with Anxiety Seminar",
-    date: "2024-12-20",
-    time: "5:30 PM - 7:00 PM",
-    location: "Online Event",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80",
-    description: "Learn practical strategies to manage anxiety in daily life from licensed therapists."
-  }
+  // {
+  //   id: 2,
+  //   title: "Coping with Anxiety Seminar",
+  //   date: "2024-12-20",
+  //   time: "5:30 PM - 7:00 PM",
+  //   location: "Online Event",
+  //   image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80",
+  //   description: "Learn practical strategies to manage anxiety in daily life from licensed therapists."
+  // }
 ];
 
 const pastEvents = [
   {
     id: 3,
-    title: "Mental Health Awareness Conference",
-    date: "2024-11-10",
-    time: "9:00 AM - 4:00 PM",
-    location: "City Convention Center",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80",
+    title: "Man Sharpens Man",
+    date: "2025-11-8",
+    time: "7:45PM - 9:00 PM",
+    location: "Google Meet ",
+    image: "/images/past1.jpg",
     description: "Annual conference focusing on mental health awareness and community support."
   },
   {
     id: 4,
     title: "Stress Management Workshop",
-    date: "2024-10-25",
-    time: "3:00 PM - 5:00 PM",
-    location: "Wellness Hub",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80",
+    date: "2025-06-14",
+    time: "8:00 PM - 9:15 PM",
+    location: "Google Meet",
+    image: "/images/past2.jpg",
     description: "Interactive workshop teaching effective stress management techniques."
+  },
+  {
+    id: 5,
+    title: "Correcting Political Authority ",
+    date: "2025-06-14",
+    time: "7:45 PM - 9:00 PM",
+    location: "Google Meet",
+    image: "/images/past3.jpg",
+    description: "Correcting Political Authority The Godly way : How far is too far ?"
   }
 ];
 

@@ -4,15 +4,15 @@ import { Calendar, Clock, MapPin, ArrowLeft, MessageCircle, Send } from "lucide-
 
 
 const events = [
-  {
-    id: 1,
-    title: "Mindfulness Meditation Workshop",
-    date: "2023-11-15",
-    time: "6:00 PM - 7:30 PM",
-    location: "Community Wellness Center",
-    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80",
-    fullDescription: "Join us for a guided meditation session to reduce stress and improve focus..."
-  },
+ {
+  id: 1,
+    title: "The Matter Masculinity",
+    date: "2025-11-8",
+    time: "7:45 PM - 9:00PM",
+    location: "Google Meet ",
+    image: "/images/Event.jpg",
+    fullDescription: "a webinar to handle the subject of Masculinity especially how we cope with the changes and challenges of identity as men and the changed definition that fit the prevalent feminine social structure"
+ },
   {
     id: 2,
     title: "Coping with Anxiety Seminar",
@@ -93,7 +93,7 @@ function EventDetails2() {
           </div>
 
           <a
-            href="https://example.com/event"
+            href="https://meet.google.com/bhp-zvur-vvv "
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-flex items-center justify-center w-full sm:w-auto bg-gradient-to-r from-green-600 to-teal-500 text-white font-semibold py-3 px-6 rounded-lg hover:from-green-700 hover:to-teal-600 transition-all shadow-md"
@@ -104,7 +104,7 @@ function EventDetails2() {
 
         {/* Comment Section */}
         <div className="bg-white rounded-2xl shadow-md p-6">
-          <h3 className="text-xl font-semibold text-green-800 mb-4 flex items-center">
+          {/* <h3 className="text-xl font-semibold text-green-800 mb-4 flex items-center">
             <MessageCircle className="w-5 h-5 mr-2 text-green-600" />
             Comments
           </h3>
@@ -128,7 +128,7 @@ function EventDetails2() {
                 <Send className="w-5 h-5" />
               </button>
             </div>
-          </form>
+          </form> */}
         </div>
       </div>
 
