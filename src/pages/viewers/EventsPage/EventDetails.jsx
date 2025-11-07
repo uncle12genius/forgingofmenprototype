@@ -1,61 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Calendar, Clock, MapPin, ArrowRight } from "lucide-react";
+import useEvents from "../../../hooks/useEvents";
 
-const upcomingEvents = [
-  {
-   id: 1,
-    title: "The Matter Masculinity",
-    date: "2025-11-8",
-    time: "7:45 PM - 9:00 PM",
-    location: "Google Meet ",
-    image: "/images/Event.jpg",
-    description: "How men navigate identity changes and challenges in today’s feminine-leaning social structure."
-  },
-  // {
-  //   id: 2,
-  //   title: "Coping with Anxiety Seminar",
-  //   date: "2024-12-20",
-  //   time: "5:30 PM - 7:00 PM",
-  //   location: "Online Event",
-  //   image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80",
-  //   description: "Learn practical strategies to manage anxiety in daily life from licensed therapists."
-  // }
-];
 
-const pastEvents = [
-  {
-    id: 3,
-    title: "Man Sharpens Man",
-    date: "2025-11-8",
-    time: "7:45PM - 9:00 PM",
-    location: "Google Meet ",
-    image: "/images/past1.jpg",
-    description: "Annual conference focusing on mental health awareness and community support."
-  },
-  {
-    id: 4,
-    title: "Stress Management Workshop",
-    date: "2025-06-14",
-    time: "8:00 PM - 9:15 PM",
-    location: "Google Meet",
-    image: "/images/past2.jpg",
-    description: "Interactive workshop teaching effective stress management techniques."
-  },
-  {
-    id: 5,
-    title: "Correcting Political Authority ",
-    date: "2025-06-14",
-    time: "7:45 PM - 9:00 PM",
-    location: "Google Meet",
-    image: "/images/past3.jpg",
-    description: "Correcting Political Authority The Godly way : How far is too far ?"
-  }
-];
+
+
+
 
 function EventDetails() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("upcoming");
+  const { upcomingEvents, pastEvents, loading, error } = useEvents();
   
   const events = activeTab === "upcoming" ? upcomingEvents : pastEvents;
 
@@ -63,12 +19,39 @@ function EventDetails() {
     if (activeTab === "upcoming") {
       navigate(`/event/${event.id}`);
     }
-    // Past events don't redirect anywhere
   };
 
   const handleUpcomingEventsClick = () => {
     setActiveTab("upcoming");
   };
+
+  if (loading) {
+    return (
+      <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div className="text-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading events...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div className="text-center py-12">
+          <div className="text-red-500 text-lg mb-4">Error loading events</div>
+          <p className="text-gray-600">{error}</p>
+          <button 
+            onClick={() => window.location.reload()}
+            className="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
@@ -118,6 +101,9 @@ function EventDetails() {
               src={event.image}
               alt={event.title}
               className="w-full h-48 object-cover"
+              onError={(e) => {
+                e.target.src = '/images/event-placeholder.jpg'; // Add a fallback image
+              }}
             />
 
             <div className="p-5 flex flex-col justify-between h-64">

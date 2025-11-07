@@ -1,35 +1,70 @@
-import { useState } from 'react';
+
+import { useState, useEffect, useCallback } from 'react';
 
 const API_BASE_URL = 'http://localhost:5000/api';
 
 export default function useEvents() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [events, setEvents] = useState([]); // normalized events array
 
   const getAuthToken = () => {
     return localStorage.getItem('adminToken');
   };
 
-  const getEvents = async () => {
+  // internal fetch that returns data (same behavior as before)
+  const getEvents = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
       const response = await fetch(`${API_BASE_URL}/events`);
       const result = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(result.message || 'Failed to fetch events');
       }
-      
-      return result.data;
-    } catch (error) {
-      console.error("Error fetching events:", error);
-      setError(error.message);
-      throw error;
+
+      // ensure result.data is an array
+      const raw = Array.isArray(result.data) ? result.data : [];
+      // normalize events: ensure `.id` and `.date` fields exist
+      const normalized = raw.map((ev) => {
+        const id = ev.id ?? ev._id ?? ev.event_id ?? null;
+        // prefer event.date, else event.event_date
+        const dateValue = ev.date ?? ev.event_date ?? ev.eventDate ?? null;
+        // convert to ISO string if present
+        const date = dateValue ? new Date(dateValue).toISOString() : null;
+
+        return {
+          ...ev,
+          id,
+          date,
+        };
+      });
+
+      setEvents(normalized);
+      return normalized;
+    } catch (err) {
+      console.error('Error fetching events:', err);
+      setError(err.message || 'Error fetching events');
+      throw err;
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  // call getEvents on mount
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      try {
+        await getEvents();
+      } catch (err) {
+        // already handled in getEvents
+      }
+    };
+    if (mounted) load();
+    return () => { mounted = false; };
+  }, [getEvents]);
 
   const createEvent = async (eventData) => {
     setLoading(true);
@@ -42,7 +77,7 @@ export default function useEvents() {
       formData.append('event_time', eventData.time);
       formData.append('venue', eventData.venue);
       formData.append('meeting_link', eventData.meetingLink || '');
-      
+
       if (eventData.image) {
         formData.append('image', eventData.image);
       }
@@ -57,14 +92,17 @@ export default function useEvents() {
       });
 
       const result = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(result.message || 'Failed to create event');
       }
-      
+
+      // refresh events after creation
+      await getEvents();
+
       return result.data;
     } catch (error) {
-      console.error("Error creating event:", error);
+      console.error('Error creating event:', error);
       setError(error.message);
       throw error;
     } finally {
@@ -86,14 +124,17 @@ export default function useEvents() {
       });
 
       const result = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(result.message || 'Failed to delete event');
       }
-      
+
+      // refresh events after deletion
+      await getEvents();
+
       return result;
     } catch (error) {
-      console.error("Error deleting event:", error);
+      console.error('Error deleting event:', error);
       setError(error.message);
       throw error;
     } finally {
@@ -116,14 +157,17 @@ export default function useEvents() {
       });
 
       const result = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(result.message || 'Failed to update event');
       }
-      
+
+      // refresh events after update
+      await getEvents();
+
       return result.data;
     } catch (error) {
-      console.error("Error updating event:", error);
+      console.error('Error updating event:', error);
       setError(error.message);
       throw error;
     } finally {
@@ -131,12 +175,28 @@ export default function useEvents() {
     }
   };
 
+  // split into upcoming and past based on date
+  const now = new Date();
+  const upcomingEvents = events.filter((ev) => {
+    if (!ev?.date) return false;
+    const evDate = new Date(ev.date);
+    return evDate >= now;
+  });
+
+  const pastEvents = events.filter((ev) => {
+    if (!ev?.date) return false;
+    const evDate = new Date(ev.date);
+    return evDate < now;
+  });
+
   return {
     getEvents,
     createEvent,
     deleteEvent,
     updateEvent,
     loading,
-    error
+    error,
+    upcomingEvents,
+    pastEvents
   };
 }
