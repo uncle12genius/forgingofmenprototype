@@ -1,59 +1,91 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Book, X, ShoppingCart } from "lucide-react";
+// import useBooks from "../../hooks/useBooks"; 
 
 const Resources = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
+  const [books, setBooks] = useState([]);
+  const { listBooks, loading, error } = useBooks();
 
-  const Resources = [
-    {
-      id: 1,
-      title: "Mastering React",
-      description: "A complete guide to building apps with React.",
-      price: "Kes 15",
-      image: "https://via.placeholder.com/150",
-    },
-    {
-      id: 2,
-      title: "Tailwind Magic",
-      description: "Design faster with Tailwind CSS best practices.",
-      price: "Kes 12",
-      image: "https://via.placeholder.com/150",
-    },
-    {
-      id: 3,
-      title: "JavaScript Essentials",
-      description: "Everything you need to know about JavaScript.",
-      price: "Kes 18",
-      image: "https://via.placeholder.com/150",
-    },
-    {
-      id: 4,
-      title: "Python Fundamentals",
-      description: "Learn Python programming from scratch.",
-      price: "Kes 20",
-      image: "https://via.placeholder.com/150",
-    },
-    {
-      id: 5,
-      title: "CSS Mastery",
-      description: "Advanced CSS techniques and best practices.",
-      price: "Kes 16",
-      image: "https://via.placeholder.com/150",
-    },
-    {
-      id: 6,
-      title: "Node.js Development",
-      description: "Build server-side applications with Node.js.",
-      price: "Kes 22",
-      image: "https://via.placeholder.com/150",
-    },
-  ];
+  // Fetch books from backend
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const booksData = await listBooks();
+        setBooks(booksData || []);
+      } catch (err) {
+        console.error("Error fetching books:", err);
+        // You can set a fallback state here if needed
+      }
+    };
+
+    fetchBooks();
+  }, []);
 
   const handleBuy = (book) => {
     setSelectedBook(book);
     setShowModal(true);
   };
+
+  // Format price to display in Kenyan Shillings
+  const formatPrice = (price) => {
+    if (!price) return "Kes 0";
+    return `Kes ${parseFloat(price).toLocaleString()}`;
+  };
+
+  // Get image URL - use placeholder if no image
+  const getImageUrl = (book) => {
+    if (book.image_url) {
+      // If image_url is a full URL, use it directly
+      if (book.image_url.startsWith('http')) {
+        return book.image_url;
+      }
+      // If it's a relative path, prepend the backend URL
+      return `http://localhost:5000${book.image_url}`;
+    }
+    // Fallback to placeholder
+    return "https://via.placeholder.com/150";
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-24 pb-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-600 to-teal-500 rounded-full mb-4">
+              <Book className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-3xl font-bold text-green-800 mb-2">Available eBooks</h1>
+            <p className="text-green-600 max-w-lg mx-auto">
+              Loading resources...
+            </p>
+          </div>
+          <div className="flex justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-24 pb-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-600 to-teal-500 rounded-full mb-4">
+              <Book className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-3xl font-bold text-green-800 mb-2">Available eBooks</h1>
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg max-w-md mx-auto">
+              Error loading books: {error}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white pt-24 pb-8 px-4 sm:px-6 lg:px-8">
@@ -70,42 +102,58 @@ const Resources = () => {
         </div>
 
         {/* Books Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Resources.map((book) => (
-            <div
-              key={book.id}
-              className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
-            >
-              <img
-                src={book.image}
-                alt={book.title}
-                className="w-full h-48 object-cover"
-              />
-              
-              <div className="p-5 flex flex-col flex-grow">
-                <h2 className="text-lg font-semibold text-green-900 mb-2 line-clamp-1">{book.title}</h2>
-                <p className="text-gray-600 text-sm mb-4 flex-grow line-clamp-2">
-                  {book.description}
-                </p>
+        {books.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="bg-white rounded-2xl shadow-sm p-8 max-w-md mx-auto">
+              <Book className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-gray-600 mb-2">No Books Available</h3>
+              <p className="text-gray-500">Check back later for new resources.</p>
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {books.map((book) => (
+              <div
+                key={book.id}
+                className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
+              >
+                <img
+                  src={getImageUrl(book)}
+                  alt={book.title}
+                  className="w-full h-48 object-cover"
+                  onError={(e) => {
+                    e.target.src = "https://via.placeholder.com/150";
+                  }}
+                />
                 
-                <div className="flex items-center justify-between mt-auto">
-                  <span className="text-green-700 font-bold text-lg">{book.price}</span>
-                  <button
-                    onClick={() => handleBuy(book)}
-                    className="flex items-center bg-gradient-to-r from-green-600 to-teal-500 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-teal-600 transition-all shadow-md"
-                  >
-                    <ShoppingCart className="w-4 h-4 mr-2" />
-                    Buy
-                  </button>
+                <div className="p-5 flex flex-col flex-grow">
+                  <h2 className="text-lg font-semibold text-green-900 mb-2 line-clamp-1">{book.title}</h2>
+                  <p className="text-gray-600 text-sm mb-2 line-clamp-1">
+                    by {book.author}
+                  </p>
+                  <p className="text-gray-600 text-sm mb-4 flex-grow line-clamp-2">
+                    {book.description || "No description available."}
+                  </p>
+                  
+                  <div className="flex items-center justify-between mt-auto">
+                    <span className="text-green-700 font-bold text-lg">{formatPrice(book.price)}</span>
+                    <button
+                      onClick={() => handleBuy(book)}
+                      className="flex items-center bg-gradient-to-r from-green-600 to-teal-500 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-teal-600 transition-all shadow-md"
+                    >
+                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      Buy
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Modal */}
         {showModal && selectedBook && (
-          <div className="fixed inset-0 flex items-center justify-center p-4 bg-bg-opacity-60 backdrop-blur-sm z-50">
+          <div className="fixed inset-0 flex items-center justify-center p-4 bg-black bg-opacity-60 backdrop-blur-sm z-50">
             <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden">
               {/* Modal Header */}
               <div className="bg-gradient-to-r from-green-600 to-teal-500 p-5 text-white">
@@ -157,6 +205,13 @@ const Resources = () => {
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     required
                   />
+                </div>
+
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-green-800 mb-2">Order Summary</h4>
+                  <p className="text-sm text-green-700">{selectedBook.title}</p>
+                  <p className="text-sm text-green-600">by {selectedBook.author}</p>
+                  <p className="text-lg font-bold text-green-800 mt-2">{formatPrice(selectedBook.price)}</p>
                 </div>
 
                 <p className="text-xs text-gray-500 text-center">

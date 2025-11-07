@@ -1,12 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
-import AdminDashboard from '../pages/Admin/AdminDashboard'; // Back to original
+import AdminDashboard from '../pages/Admin/AdminDashboard';
 import AddBook from '../pages/Admin/AddBook';
 import PostEvent from '../pages/Admin/PostEvent';
-import ViewBooking from '../pages/Admin/ViewBooking'; // Back to original
+import ViewBooking from '../pages/Admin/ViewBooking';
+import AdminLogin from '../pages/Admin/Adminlogin';
 
 const AdminRoutes = () => {
   return (
     <Routes>
+      <Route path="login" element={<AdminLogin />} />
       <Route index element={<AdminDashboard />} />
       <Route path="add-book" element={<AddBook />} />
       <Route path="post-event" element={<PostEvent />} />

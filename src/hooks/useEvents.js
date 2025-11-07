@@ -4,20 +4,27 @@ const API_BASE_URL = 'http://localhost:5000/api';
 
 export default function useEvents() {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const getAuthToken = () => {
+    return localStorage.getItem('adminToken');
+  };
 
   const getEvents = async () => {
     setLoading(true);
+    setError(null);
     try {
       const response = await fetch(`${API_BASE_URL}/events`);
       const result = await response.json();
       
-      if (result.success) {
-        return result.data;
-      } else {
-        throw new Error(result.message);
+      if (!response.ok) {
+        throw new Error(result.message || 'Failed to fetch events');
       }
+      
+      return result.data;
     } catch (error) {
       console.error("Error fetching events:", error);
+      setError(error.message);
       throw error;
     } finally {
       setLoading(false);
@@ -26,6 +33,7 @@ export default function useEvents() {
 
   const createEvent = async (eventData) => {
     setLoading(true);
+    setError(null);
     try {
       const formData = new FormData();
       formData.append('title', eventData.title);
@@ -39,7 +47,7 @@ export default function useEvents() {
         formData.append('image', eventData.image);
       }
 
-      const token = localStorage.getItem('adminToken');
+      const token = getAuthToken();
       const response = await fetch(`${API_BASE_URL}/events`, {
         method: 'POST',
         headers: {
@@ -50,13 +58,14 @@ export default function useEvents() {
 
       const result = await response.json();
       
-      if (result.success) {
-        return result.data;
-      } else {
-        throw new Error(result.message);
+      if (!response.ok) {
+        throw new Error(result.message || 'Failed to create event');
       }
+      
+      return result.data;
     } catch (error) {
       console.error("Error creating event:", error);
+      setError(error.message);
       throw error;
     } finally {
       setLoading(false);
@@ -65,8 +74,9 @@ export default function useEvents() {
 
   const deleteEvent = async (eventId) => {
     setLoading(true);
+    setError(null);
     try {
-      const token = localStorage.getItem('adminToken');
+      const token = getAuthToken();
       const response = await fetch(`${API_BASE_URL}/events/${eventId}`, {
         method: 'DELETE',
         headers: {
@@ -77,13 +87,14 @@ export default function useEvents() {
 
       const result = await response.json();
       
-      if (result.success) {
-        return result;
-      } else {
-        throw new Error(result.message);
+      if (!response.ok) {
+        throw new Error(result.message || 'Failed to delete event');
       }
+      
+      return result;
     } catch (error) {
       console.error("Error deleting event:", error);
+      setError(error.message);
       throw error;
     } finally {
       setLoading(false);
@@ -92,8 +103,9 @@ export default function useEvents() {
 
   const updateEvent = async (eventId, updates) => {
     setLoading(true);
+    setError(null);
     try {
-      const token = localStorage.getItem('adminToken');
+      const token = getAuthToken();
       const response = await fetch(`${API_BASE_URL}/events/${eventId}`, {
         method: 'PUT',
         headers: {
@@ -105,13 +117,14 @@ export default function useEvents() {
 
       const result = await response.json();
       
-      if (result.success) {
-        return result.data;
-      } else {
-        throw new Error(result.message);
+      if (!response.ok) {
+        throw new Error(result.message || 'Failed to update event');
       }
+      
+      return result.data;
     } catch (error) {
       console.error("Error updating event:", error);
+      setError(error.message);
       throw error;
     } finally {
       setLoading(false);
@@ -123,6 +136,7 @@ export default function useEvents() {
     createEvent,
     deleteEvent,
     updateEvent,
-    loading
+    loading,
+    error
   };
 }
