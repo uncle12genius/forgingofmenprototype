@@ -5,14 +5,14 @@ import { Calendar, Clock, MapPin, ArrowLeft, MessageCircle, Send } from "lucide-
 
 const events = [
  {
-  id: 1,
-    title: "The Matter Masculinity",
-    date: "2025-11-8",
-    time: "7:45 PM - 9:00PM",
+   id: 1,
+    title: "HE -MOTIONS",
+    date: "2025-11-15",
+    time: "7:45 PM - 9:00 PM",
     location: "Google Meet ",
-    image: "/images/Event.jpg",
-    fullDescription: "a webinar to handle the subject of Masculinity especially how we cope with the changes and challenges of identity as men and the changed definition that fit the prevalent feminine social structure"
- },
+    image: "/images/eventwo.jpeg",
+    description: "Understanding emotional expression in men "
+  },
   {
     id: 2,
     title: "Coping with Anxiety Seminar",
