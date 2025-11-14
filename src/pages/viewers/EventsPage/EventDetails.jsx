@@ -5,12 +5,12 @@ import { Calendar, Clock, MapPin, ArrowRight } from "lucide-react";
 const upcomingEvents = [
   {
    id: 1,
-    title: "The Matter Masculinity",
-    date: "2025-11-8",
+    title: "HE -MOTIONS",
+    date: "2025-11-15",
     time: "7:45 PM - 9:00 PM",
     location: "Google Meet ",
-    image: "/images/Event.jpg",
-    description: "How men navigate identity changes and challenges in today’s feminine-leaning social structure."
+    image: "/images/eventwo.jpeg",
+    description: "Understanding emotional expression in men "
   },
   // {
   //   id: 2,
@@ -50,6 +50,15 @@ const pastEvents = [
     location: "Google Meet",
     image: "/images/past3.jpg",
     description: "Correcting Political Authority The Godly way : How far is too far ?"
+  },
+   {
+   id: 6,
+    title: "The Matter Masculinity",
+    date: "2025-11-8",
+    time: "7:45 PM - 9:00 PM",
+    location: "Google Meet ",
+    image: "/images/Event.jpg",
+    description: "How men navigate identity changes and challenges in today’s feminine-leaning social structure."
   }
 ];
 
@@ -117,10 +126,10 @@ function EventDetails() {
             <img
               src={event.image}
               alt={event.title}
-              className="w-full h-48 object-cover"
+              className="w-full h- object-cover"
             />
 
-            <div className="p-5 flex flex-col justify-between h-64">
+            <div className="p-5 flex flex-col justify-between h-65">
               <div>
                 <h2 className="text-lg font-semibold text-green-900 mb-2 line-clamp-1">
                   {event.title}
