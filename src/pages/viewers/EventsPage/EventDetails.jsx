@@ -59,6 +59,33 @@ const pastEvents = [
     location: "Google Meet ",
     image: "/images/Event.jpg",
     description: "How men navigate identity changes and challenges in today’s feminine-leaning social structure."
+  },
+  {
+   id: 7,
+    title: "HE -MOTIONS",
+    date: "2025-11-15",
+    time: "7:45 PM - 9:00 PM",
+    location: "Google Meet ",
+    image: "/images/eventwo.jpeg",
+    description: "Understanding emotional expression in men "
+  },
+  {
+   id: 8,
+    title: "MEN AND THE EMPOWERED WOMEN",
+    date: "2025-12-06",
+    time: "7:45 PM - 9:00 PM",
+    location: "Google Meet ",
+    image: "/images/past4.jpeg",
+    description: "Navigating Relationships with Empowered women"
+  },
+  {
+   id: 9,
+    title: "Man Sharpens Man ",
+    date: "2025-12-06",
+    time: "7:45 PM - 9:00 PM",
+    location: "Google Meet ",
+    image: "/images/past5.jpeg",
+    description: "What is my personality ?"
   }
 ];
 
