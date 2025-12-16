@@ -5,12 +5,12 @@ import { Calendar, Clock, MapPin, ArrowRight } from "lucide-react";
 const upcomingEvents = [
   {
    id: 1,
-    title: "HE -MOTIONS",
+    title: "THE FATHERS - KING'S COUNSEL",
     date: "2025-11-15",
-    time: "7:45 PM - 9:00 PM",
+    time: "8:00 PM - 9:00 PM",
     location: "Google Meet ",
-    image: "/images/eventwo.jpeg",
-    description: "Understanding emotional expression in men "
+    image: "/images/event12 .jpeg",
+    description: "Words to Wounded Heart "
   },
   // {
   //   id: 2,

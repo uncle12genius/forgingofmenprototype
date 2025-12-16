@@ -6,12 +6,12 @@ import { Calendar, Clock, MapPin, ArrowLeft, MessageCircle, Send } from "lucide-
 const events = [
  {
    id: 1,
-    title: "HE -MOTIONS",
+    title: "THE FATHERS - KING'S COUNSEL",
     date: "2025-11-15",
-    time: "7:45 PM - 9:00 PM",
+    time: "8:00 PM - 9:00 PM",
     location: "Google Meet ",
-    image: "/images/eventwo.jpeg",
-    description: "Understanding emotional expression in men "
+    image: "/images/king2.png",
+    fulldescription: "Words to Wounded Heart "
   },
   {
     id: 2,
@@ -63,7 +63,7 @@ function EventDetails2() {
           <img
             src={event.image}
             alt="Event Poster"
-            className="w-full h-56 sm:h-64 object-cover"
+            className="w-full h-60 sm:h-110 object-cover"
           />
           <div className="absolute top-4 right-4 bg-green-600 text-white text-sm font-semibold px-3 py-1 rounded-full">
             Upcoming
@@ -93,7 +93,7 @@ function EventDetails2() {
           </div>
 
           <a
-            href="https://meet.google.com/bhp-zvur-vvv "
+            href="https://meet.google.com/kxj-gydz-wor "
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-flex items-center justify-center w-full sm:w-auto bg-gradient-to-r from-green-600 to-teal-500 text-white font-semibold py-3 px-6 rounded-lg hover:from-green-700 hover:to-teal-600 transition-all shadow-md"
