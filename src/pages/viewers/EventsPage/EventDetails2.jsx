@@ -7,7 +7,7 @@ const events = [
  {
    id: 1,
     title: "THE FATHERS - KING'S COUNSEL",
-    date: "2025-11-15",
+    date: "2025-12-20",
     time: "8:00 PM - 9:00 PM",
     location: "Google Meet ",
     image: "/images/king2.png",
